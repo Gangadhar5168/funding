@@ -23,6 +23,10 @@ public class DemoSecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(HttpMethod.GET,"/api/staff").hasAnyRole("ADMIN","EMPLOYEE")
             .requestMatchers(HttpMethod.POST,"/api/staff").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST,"/api/crew/**").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST,"/api/crew").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.GET,"/api/transactions").hasAnyRole("ADMIN","EMPLOYEE")
+            .requestMatchers(HttpMethod.GET,"/api/transactions/**").hasAnyRole("ADMIN","EMPLOYEE")
             .anyRequest().authenticated()
         )
         .httpBasic(Customizer.withDefaults());
