@@ -27,6 +27,7 @@ public class DemoSecurityConfig {
             .requestMatchers(HttpMethod.POST,"/api/crew").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET,"/api/transactions").hasAnyRole("ADMIN","EMPLOYEE")
             .requestMatchers(HttpMethod.GET,"/api/transactions/**").hasAnyRole("ADMIN","EMPLOYEE")
+            .requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll()
             .anyRequest().authenticated()
         )
         .httpBasic(Customizer.withDefaults());
